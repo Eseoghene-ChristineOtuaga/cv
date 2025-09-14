@@ -1,1 +1,2 @@
-# cv
+# こんにちは! Welcome to my cv website. I created it as part of Udemy's 2020 Web Development boot camp by Angela Yu. I came back to this website to use as a reference; it brought back so many memories😂.Even though I put in a lot of effort to build it , it wasn't going to showcase my skills as a developer. So I ghiblified it! hehe.
+# This website is inspired by my favourite programmer - Angela Yu and modeled after Sean halphin's website. 

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chess - Eseoghene Christine Otuaga</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="shortcut icon" href="fav.ico" type="image/x-icon">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&family=Quicksand:wght@500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <!-- Navigation Header -->
+  <header id="header">
+    <div class="container nav-container">
+      <ul class="nav-menu">
+        <li><a href="index.html" class="nav-link">Me</a></li>
+        <li><a href="projects.html" class="nav-link">Projects</a></li>
+        <li><a href="marshmallows.html" class="nav-link">Marshmallows</a></li>
+        <li><a href="notes.html" class="nav-link">Notes</a></li>
+        <li><a href="chess.html" class="nav-link active">Chess \</a></li>
+        <li><a href="contact.html" class="nav-link">Contact</a></li>
+      </ul>
+    </div>
+  </header>
+  
+  <!-- Chess Section -->
+  <section id="chess" class="section">
+    <div class="container">
+      <h2 class="section-title">Chess Corner</h2>
+      
+      <div class="chess-content">
+        <div class="chess-board"></div>
+        
+        <div class="chess-personality card">
+          <h3>What's Your Chess Personality?</h3>
+          <p>Discover which chess piece best matches your personality and approach to challenges.</p>
+          
+          <div class="personality-options">
+            <button class="personality-btn" data-piece="pawn">Pawn</button>
+            <button class="personality-btn" data-piece="knight">Knight</button>
+            <button class="personality-btn" data-piece="bishop">Bishop</button>
+            <button class="personality-btn" data-piece="rook">Rook</button>
+            <button class="personality-btn" data-piece="queen">Queen</button>
+            <button class="personality-btn" data-piece="king">King</button>
+          </div>
+          
+          <div class="chess-result" id="chess-result">
+            <!-- Result will be displayed here -->
+          </div>
+        </div>
+        
+        <div class="chess-invite">
+          <h3>Let's Play a Game!</h3>
+          <p>Challenge me to a game of chess on Chess.com. I'm always looking for new opponents!</p>
+          <a href="https://www.chess.com/member/mhizdar" class="btn">Play on Chess.com</a>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Footer -->
+  <footer>
+    <div class="container footer-content">
+      <div class="footer-social">
+        <a href="https://www.instagram.com/e.s.e._?utm_source=qr&igsh=NjRpam5vNnNveTMw" title="Instagram"><i class="fab fa-instagram"></i></a>
+        <a href="https://github.com/Eseoghene-ChristineOtuaga" title="GitHub"><i class="fab fa-github"></i></a>
+        <a href="https://www.linkedin.com/in/eseoghene-christine-otuaga-ba1337378?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+        <a href="https://www.chess.com/member/mhizdar" title="Chess.com"><i class="fas fa-chess"></i></a>
+      </div>
+      
+      <p class="copyright">© 2025 Eseoghene Christine Otuaga. All rights reserved.</p>
+      <p>Designed with ♥ and Ghibli magic</p>
+    </div>
+  </footer>
+  
+  <!-- Ghibli-inspired Totoro -->
+  <div class="totoro" id="totoro"></div>
+
+  <script src="script.js"></script>
+</body>
+</html>

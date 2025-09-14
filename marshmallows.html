@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Hobbies - Eseoghene</title>
+    <link rel="shortcut icon" href="fav.ico" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&family=Quicksand:wght@500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --cream: #FFF5E1;
+            --soft-gold: #FFD700;
+            --light-pink: #FFB6C1;
+            --sky-blue: #87CEEB;
+            --sage-green: #8FBC8F;
+            --olive-green: #556B2F;
+            --text-dark: #556B2F;
+            --text-light: #696969;
+            --lavender: #C8A2C8;
+            --marshmallow: #FFFAF0;
+            --ghibli-green: #0d5d53;
+            --muted: #6b786b;
+            --mint-active-bg: rgba(159, 191, 158, 0.3);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Nunito', sans-serif;
+            background: linear-gradient(135deg, #f8f4e9, #f9e6e6, #e9f5fb);
+            color: var(--text-dark);
+            line-height: 1.6;
+            overflow-x: hidden;
+            min-height: 100vh;
+            position: relative;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Navigation */
+        header {
+  background-color: transparent;
+  padding: 20px 0;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  z-index: 1000;
+  transition: all 0.3s ease;
+}
+
+/* header.scrolled {
+  background-color: rgba(255, 245, 225, 0.9);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+} */
+
+.nav-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.nav-menu {
+  display: flex;
+  list-style: none;
+  background: transparent;
+  border-radius: 50px;
+  padding: 10px 20px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(10px);
+}
+
+.nav-menu li {
+  margin: 0 15px;
+}
+
+.nav-menu a {
+  text-decoration: none;
+  color: var(--text-dark);
+  font-weight: 600;
+  transition: color 0.3s ease;
+  position: relative;
+  padding: 8px 5px;
+}
+
+.nav-menu a:hover {
+  color: var(--soft-gold);
+}
+
+.nav-menu a::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: 0;
+  left: 0;
+  background-color: var(--soft-gold);
+  transition: width 0.3s ease;
+}
+
+.nav-menu a:hover::after {
+  width: 100%;
+}
+
+.nav-menu a.active {
+  color: var(--soft-gold);
+  background: var(--mint-active-bg);
+  border-radius: 999px;
+  padding: 8px 15px;
+}
+
+.nav-menu a.active::after {
+  width: 0;
+}
+
+        /* Page Header */
+        .page-header {
+            text-align: center;
+            padding: 80px 0 40px;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .page-title {
+            font-size: 3rem;
+            color: var(--ghibli-green);
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .page-subtitle {
+            font-size: 1.2rem;
+            color: var(--text-light);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        /* Marshmallow Animation */
+        .marshmallow-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+            overflow: hidden;
+        }
+        
+        .marshmallow {
+            position: absolute;
+            width: 40px;
+            height: 40px;
+            background: var(--marshmallow);
+            border-radius: 50%;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            opacity: 0.8;
+            top: -50px;
+            animation: fall linear infinite;
+        }
+        
+        @keyframes fall {
+            to {
+                transform: translateY(100vh) rotate(360deg);
+            }
+        }
+        
+        /* Hobbies Section */
+        .hobbies-section {
+            padding: 40px 0 80px;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .hobby-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+        
+        .hobby-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .hobby-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+        }
+        
+        .hobby-header {
+            padding: 25px 25px 15px;
+            text-align: center;
+            background: linear-gradient(135deg, var(--light-pink), var(--sky-blue));
+            color: white;
+        }
+        
+        .hobby-icon {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+        }
+        
+        .hobby-title {
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+        }
+        
+        .hobby-content {
+            padding: 25px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .hobby-description {
+            margin-bottom: 20px;
+            color: var(--text-light);
+            flex-grow: 1;
+        }
+        
+        .hobby-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: auto;
+        }
+        
+        .hobby-emoji {
+            font-size: 1.5rem;
+        }
+        
+        /* Special marshmallow card */
+        .marshmallow-card .hobby-header {
+            background: linear-gradient(135deg, #ff9ecb, #ffc6d9);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .marshmallow-card .hobby-header::before {
+            content: '';
+            position: absolute;
+            top: -10px;
+            left: -10px;
+            width: 50px;
+            height: 50px;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+        }
+        
+        .marshmallow-card .hobby-header::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            right: -15px;
+            width: 70px;
+            height: 70px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--olive-green);
+            color: white;
+            padding: 40px 0;
+            text-align: center;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .footer-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .footer-social {
+            display: flex;
+            margin: 20px 0;
+        }
+        
+        .footer-social a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            margin: 0 10px;
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .footer-social a:hover {
+            background-color: var(--soft-gold);
+            transform: translateY(-3px);
+        }
+        
+        .copyright {
+            margin-top: 20px;
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-menu {
+                flex-wrap: wrap;
+                justify-content: center;
+                padding: 10px;
+            }
+            
+            .nav-menu li {
+                margin: 5px 10px;
+            }
+            
+            .page-title {
+                font-size: 2.2rem;
+            }
+            
+            .hobby-cards {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation Header -->
+    <header>
+        <div class="container nav-container">
+            <ul class="nav-menu">
+                <li><a href="index.html">Me</a></li>
+                <li><a href="projects.html">Projects</a></li>
+                <li><a href="marshmallows.html" class="active">Hobbies \</a></li>
+                <li><a href="notes.html">Notes</a></li>
+                <li><a href="chess.html">Chess</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </div>
+    </header>
+    
+    <!-- Marshmallow Animation Container -->
+    <div class="marshmallow-container" id="marshmallow-container"></div>
+    
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <h1 class="page-title">My Hobbies & Passions</h1>
+            <p class="page-subtitle">The things that bring me joy, inspiration, and keep me going every day</p>
+        </div>
+    </section>
+    
+    <!-- Hobbies Section -->
+    <section class="hobbies-section">
+        <div class="container">
+            <div class="hobby-cards">
+                <!-- Marshmallow Card -->
+                <div class="hobby-card marshmallow-card">
+                    <div class="hobby-header">
+                        <div class="hobby-icon">🍡</div>
+                        <h2 class="hobby-title">Marshmallows</h2>
+                    </div>
+                    <div class="hobby-content">
+                        <p class="hobby-description">
+                            I absolutely LOVE marshmallows! There's something magical about their soft, fluffy texture and sweet taste. 
+                            Though they're quite expensive here in Nigeria, I treat myself whenever I can. My dream is to someday have 
+                            a never-ending supply of marshmallows! (Hint: I accept marshmallow gifts 🎁)
+                        </p>
+                        <div class="hobby-meta">
+                            <span class="hobby-emoji">🔥 ➕ 🍡 = 😋</span>
+                            <span class="hobby-status">Always craving</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Reading Card -->
+                <div class="hobby-card">
+                    <div class="hobby-header">
+                        <div class="hobby-icon">📚</div>
+                        <h2 class="hobby-title">Reading</h2>
+                    </div>
+                    <div class="hobby-content">
+                        <p class="hobby-description">
+                            Getting lost in a good book is one of my favorite escapes. I enjoy both fiction and non-fiction, 
+                            with a particular interest in fantasy novels and tech-related books. Reading helps me expand my 
+                            perspective and learn about worlds beyond my own.
+                        </p>
+                        <div class="hobby-meta">
+                            <span class="hobby-emoji">📖</span>
+                            <span class="hobby-status">Currently reading: Clean Code</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Football Card -->
+                <div class="hobby-card">
+                    <div class="hobby-header">
+                        <div class="hobby-icon">⚽</div>
+                        <h2 class="hobby-title">Football Games</h2>
+                    </div>
+                    <div class="hobby-content">
+                        <p class="hobby-description">
+                            I'm a huge football fan! I love watching matches and playing football video games. 
+                            Dream League Soccer (DLS) is my current favorite mobile game—I can spend hours building 
+                            my dream team and competing in tournaments. There's something thrilling about the strategy 
+                            and competition of football.
+                        </p>
+                        <div class="hobby-meta">
+                            <span class="hobby-emoji">🎮</span>
+                            <span class="hobby-status">DLS 2023 Champion</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Coding Card -->
+                <div class="hobby-card">
+                    <div class="hobby-header">
+                        <div class="hobby-icon">💻</div>
+                        <h2 class="hobby-title">Coding</h2>
+                    </div>
+                    <div class="hobby-content">
+                        <p class="hobby-description">
+                            Coding isn't just a career path for me—it's a genuine passion. I love the process of 
+                            turning ideas into reality through code. There's something magical about watching lines 
+                            of text transform into beautiful, functional applications. The problem-solving aspect 
+                            keeps me engaged and constantly learning.
+                        </p>
+                        <div class="hobby-meta">
+                            <span class="hobby-emoji">✨</span>
+                            <span class="hobby-status">Bringing ideas to life</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Problem Solving Card -->
+                <div class="hobby-card">
+                    <div class="hobby-header">
+                        <div class="hobby-icon">🧩</div>
+                        <h2 class="hobby-title">Problem Solving</h2>
+                    </div>
+                    <div class="hobby-content">
+                        <p class="hobby-description">
+                            I enjoy tackling complex problems and finding elegant solutions. Whether it's debugging code, 
+                            solving puzzles, or working through logical challenges, I get genuine satisfaction from the 
+                            process of breaking down problems and systematically addressing each component.
+                        </p>
+                        <div class="hobby-meta">
+                            <span class="hobby-emoji">🔍</span>
+                            <span class="hobby-status">Always solving</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Food Card -->
+                <div class="hobby-card">
+                    <div class="hobby-header">
+                        <div class="hobby-icon">🍲</div>
+                        <h2 class="hobby-title">Food & Cooking</h2>
+                    </div>
+                    <div class="hobby-content">
+                        <p class="hobby-description">
+                            I'm a self-proclaimed foodie who loves exploring different cuisines and flavors. 
+                            Cooking is my creative outlet, and I enjoy experimenting with new recipes. From 
+                            Nigerian classics to international dishes, I believe good food brings people 
+                            together and creates lasting memories.
+                        </p>
+                        <div class="hobby-meta">
+                            <span class="hobby-emoji">👩‍🍳</span>
+                            <span class="hobby-status">Always experimenting</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <footer>
+        <div class="container footer-content">
+          <div class="footer-social">
+            <a href="https://www.instagram.com/e.s.e._?utm_source=qr&igsh=NjRpam5vNnNveTMw" title="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="https://github.com/Eseoghene-ChristineOtuaga" title="GitHub"><i class="fab fa-github"></i></a>
+            <a href="https://www.linkedin.com/in/eseoghene-christine-otuaga-ba1337378?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+            <a href="https://www.chess.com/member/mhizdar" title="Chess.com"><i class="fas fa-chess"></i></a>
+          </div>
+          
+          <p class="copyright">© 2025 Eseoghene Christine Otuaga. All rights reserved.</p>
+          <p>Designed with ♥ and Ghibli magic</p>
+        </div>
+      </footer>
+
+    <script>
+        // Create falling marshmallows
+        function createMarshmallows() {
+            const container = document.getElementById('marshmallow-container');
+            const marshmallowCount = 20;
+            
+            for (let i = 0; i < marshmallowCount; i++) {
+                const marshmallow = document.createElement('div');
+                marshmallow.classList.add('marshmallow');
+                
+                // Randomize position, size, and animation duration
+                const size = Math.random() * 20 + 20;
+                const left = Math.random() * 100;
+                const animationDuration = Math.random() * 15 + 10;
+                const animationDelay = Math.random() * 5;
+                
+                marshmallow.style.width = `${size}px`;
+                marshmallow.style.height = `${size}px`;
+                marshmallow.style.left = `${left}vw`;
+                marshmallow.style.animationDuration = `${animationDuration}s`;
+                marshmallow.style.animationDelay = `${animationDelay}s`;
+                
+                container.appendChild(marshmallow);
+            }
+        }
+        
+        // Initialize when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            createMarshmallows();
+            
+            // Add subtle hover effect to cards
+            const cards = document.querySelectorAll('.hobby-card');
+            cards.forEach(card => {
+                card.addEventListener('mouseenter', () => {
+                    card.style.transform = 'translateY(-10px) scale(1.02)';
+                });
+                
+                card.addEventListener('mouseleave', () => {
+                    card.style.transform = 'translateY(0) scale(1)';
+                });
+            });
+        });
+    </script>
+</body>
+</html>
