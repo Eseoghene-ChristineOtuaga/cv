@@ -529,6 +529,10 @@
   font-size: 0.9rem;
   opacity: 0.8;
 }
+.footer-message {
+  font-size: 0.9rem;
+  opacity: 0.8;
+}
 
         /* === ANIMATIONS === */
         @keyframes float {
@@ -764,8 +768,8 @@
         <a href="https://www.chess.com/member/mhizdar" title="Chess.com"><i class="fas fa-chess"></i></a>
       </div>
       
-      <p class="copyright">© 2025 Eseoghene Christine Otuaga. All rights reserved.</p>
-      <p>Designed with ♥ and Ghibli magic</p>
+    <p class="copyright">© <span id="year"></span> Eseoghene Christine Otuaga. All rights reserved.</p>
+      <p class="footer-message">Designed with ♥ and Ghibli magic</p>
     </div>
   </footer>
     <!-- Ghibli-inspired Totoro -->
@@ -840,7 +844,14 @@
         window.addEventListener('scroll', animateOnScroll);
         window.addEventListener('load', animateOnScroll);
 
-        
+        // Dynamic copyright year
+        document.addEventListener('DOMContentLoaded', function() {
+          const currentYear = new Date().getFullYear();
+          const copyrightElements = document.querySelectorAll('.copyright');
+          copyrightElements.forEach(element => {
+            element.textContent = `© ${currentYear} Eseoghene Christine Otuaga. All rights reserved.`;
+          });
+        });
     </script>
 </body>
 </html>

@@ -60,14 +60,25 @@ if(contactForm) {
   });
 }
 
-// Totoro interaction
-const totoro = document.getElementById('totoro');
-
-if(totoro) {
-  totoro.addEventListener('click', () => {
-    alert('Hello! I\'m a friendly Totoro here to bring some Ghibli magic to your day!');
+// Run when page loads
+document.addEventListener('DOMContentLoaded', function() {
+  // Dynamic copyright year
+  const currentYear = new Date().getFullYear();
+  const copyrightElements = document.querySelectorAll('.copyright');
+  copyrightElements.forEach(element => {
+    element.textContent = `© ${currentYear} Eseoghene Christine Otuaga. All rights reserved.`;
   });
-}
+
+  // Totoro interaction
+  const totoro = document.getElementById('totoro');
+  if(totoro) {
+    totoro.addEventListener('click', () => {
+      alert('Hello! I\'m a friendly Totoro here to bring some Ghibli magic to your day!');
+    });
+  }
+  
+  setActiveNavLink();
+});
 
 // Set active navigation link based on current page
 function setActiveNavLink() {
@@ -83,8 +94,3 @@ function setActiveNavLink() {
     }
   });
 }
-
-// Run when page loads
-document.addEventListener('DOMContentLoaded', function() {
-  setActiveNavLink();
-});
