@@ -157,14 +157,14 @@ header {
 .nav-menu {
   display: flex;
   list-style: none;
-  background: rgba(255, 255, 255, 0.18);
+  background: rgba(255, 255, 255, 0.25);
   border-radius: var(--radius-pill);
-  padding: 8px 20px;
+  padding: 8px 16px;
   box-shadow: 0 4px 24px rgba(0,0,0,0.08);
   backdrop-filter: blur(18px);
   -webkit-backdrop-filter: blur(18px);
-  border: 1px solid rgba(255,255,255,0.35);
-  gap: 4px;
+  border: 1px solid rgba(255,255,255,0.45);
+  gap: 6px;
 }
 
 .nav-menu li { margin: 0; }
@@ -176,15 +176,28 @@ header {
   font-weight: 700;
   font-size: 0.9rem;
   transition: var(--transition);
-  padding: 7px 14px;
+  padding: 7px 16px;
   border-radius: var(--radius-pill);
 }
 
-.nav-menu a:hover { color: var(--gold); }
+.nav-menu a:hover {
+  color: var(--green-forest);
+  background: rgba(255, 255, 255, 0.7);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  transform: translateY(-1px);
+}
 
 .nav-menu a.active {
-  color: var(--gold);
-  background: var(--nav-active-bg);
+  color: #ffffff;
+  background: linear-gradient(135deg, var(--green-forest), var(--green-mid));
+  box-shadow: 0 3px 10px rgba(45, 106, 79, 0.28);
+  font-weight: 800;
+}
+
+.nav-menu a.active:hover {
+  color: #ffffff;
+  background: linear-gradient(135deg, #1b4332, var(--green-forest));
+  transform: translateY(-1px);
 }
 
 /* === HOME — HERO === */
@@ -413,6 +426,7 @@ header {
 /* === SKILLS SECTION === */
 #skills {
   background: linear-gradient(135deg, rgba(143,188,143,.08) 0%, rgba(135,206,235,.08) 100%);
+  padding: 100px 0 90px;
 }
 
 .skills-categories {
@@ -477,7 +491,10 @@ header {
 }
 
 /* ── Tool workflow infographic ─────────────────────────── */
-.workflow-section { margin-top: 16px; }
+.workflow-section {
+  margin-top: 24px;
+  padding-bottom: 24px;
+}
 
 .workflow-label {
   text-align: center;
@@ -496,6 +513,7 @@ header {
   flex-wrap: wrap;
   gap: 0;
   position: relative;
+  padding-bottom: 16px;
 }
 
 .wf-node {
@@ -1043,10 +1061,48 @@ textarea { min-height: 140px; resize: vertical; }
   color: #fff;
   font-size: 1rem;
   padding: 13px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
 }
 
 .submit-btn:hover {
   background: linear-gradient(135deg, #1b4332, var(--green-forest));
+}
+
+.submit-btn:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+  transform: none !important;
+}
+
+.form-status {
+  margin-top: 18px;
+  padding: 12px 18px;
+  border-radius: 12px;
+  font-size: 0.92rem;
+  font-weight: 600;
+  text-align: center;
+  display: none;
+  animation: fadeIn 0.35s ease;
+  line-height: 1.5;
+}
+
+.form-status.success {
+  display: block;
+  background: #e8f5e9;
+  color: #1b5e20;
+  border: 1px solid #a5d6a7;
+  box-shadow: var(--shadow-sm);
+}
+
+.form-status.error {
+  display: block;
+  background: #ffebee;
+  color: #c62828;
+  border: 1px solid #ffcdd2;
+  box-shadow: var(--shadow-sm);
 }
 
 /* === MENTORS PAGE === */

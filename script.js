@@ -52,21 +52,21 @@ document.addEventListener('DOMContentLoaded', function () {
 
   // ── Chess personality quiz ───────────────────────────────
   const personalityBtns = document.querySelectorAll('.personality-btn');
-  const chessResult      = document.getElementById('chess-result');
+  const chessResult = document.getElementById('chess-result');
   const pieces = {
-    pawn:   { title: 'The Pawn',   desc: 'Methodical and persistent — you know small, consistent steps lead to great things. You start humble but have extraordinary potential.' },
+    pawn: { title: 'The Pawn', desc: 'Methodical and persistent — you know small, consistent steps lead to great things. You start humble but have extraordinary potential.' },
     knight: { title: 'The Knight', desc: 'Creative and unpredictable — you solve problems from unexpected angles and love a challenge that others find confusing.' },
     bishop: { title: 'The Bishop', desc: 'Strategic and focused — you think in clear lines, excel at long-term planning, and always see the bigger picture.' },
-    rook:   { title: 'The Rook',   desc: 'Direct and powerful — you cut through complexity and tackle problems head-on with efficient, no-nonsense solutions.' },
-    queen:  { title: 'The Queen',  desc: 'Versatile and dynamic — you adapt to any situation, juggle multiple challenges at once, and lead naturally.' },
-    king:   { title: 'The King',   desc: 'Steady and strategic — you provide direction, protect what matters, and understand that patience is its own kind of power.' },
+    rook: { title: 'The Rook', desc: 'Direct and powerful — you cut through complexity and tackle problems head-on with efficient, no-nonsense solutions.' },
+    queen: { title: 'The Queen', desc: 'Versatile and dynamic — you adapt to any situation, juggle multiple challenges at once, and lead naturally.' },
+    king: { title: 'The King', desc: 'Steady and strategic — you provide direction, protect what matters, and understand that patience is its own kind of power.' },
   };
 
   if (personalityBtns.length && chessResult) {
     personalityBtns.forEach(btn => {
       btn.addEventListener('click', () => {
         const piece = btn.dataset.piece;
-        const data  = pieces[piece];
+        const data = pieces[piece];
         chessResult.innerHTML = `<h4>${data.title}</h4><p>${data.desc}</p>`;
         chessResult.classList.add('active');
       });
@@ -75,15 +75,71 @@ document.addEventListener('DOMContentLoaded', function () {
 
   // ── Contact form ─────────────────────────────────────────
   const contactForm = document.getElementById('contactForm');
+  const formStatus = document.getElementById('formStatus');
+
   if (contactForm) {
-    contactForm.addEventListener('submit', e => {
+    contactForm.addEventListener('submit', async function (e) {
       e.preventDefault();
-      const name    = document.getElementById('name')?.value.trim();
-      const email   = document.getElementById('email')?.value.trim();
+
+      const submitBtn = document.getElementById('submitBtn') || contactForm.querySelector('.submit-btn');
+      const originalBtnText = submitBtn ? submitBtn.innerHTML : 'Send Message';
+
+      const name = document.getElementById('name')?.value.trim();
+      const email = document.getElementById('email')?.value.trim();
       const message = document.getElementById('message')?.value.trim();
-      if (name && email && message) {
-        alert("Thanks for reaching out! I'll get back to you soon.");
-        contactForm.reset();
+
+      if (!name || !email || !message) {
+        if (formStatus) {
+          formStatus.className = 'form-status error';
+          formStatus.textContent = 'Please fill in all fields before sending.';
+        }
+        return;
+      }
+
+      if (submitBtn) {
+        submitBtn.disabled = true;
+        submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
+      }
+      if (formStatus) {
+        formStatus.className = 'form-status';
+        formStatus.textContent = '';
+      }
+
+      try {
+        const formData = new FormData(contactForm);
+        const response = await fetch(contactForm.action, {
+          method: 'POST',
+          body: formData,
+          headers: {
+            'Accept': 'application/json'
+          }
+        });
+
+        if (response.ok) {
+          if (formStatus) {
+            formStatus.className = 'form-status success';
+            formStatus.textContent = 'Thanks for reaching out! I will get back to you shortly.';
+          }
+          contactForm.reset();
+        } else {
+          const data = await response.json().catch(() => ({}));
+          const errorMsg = (data && data.errors && data.errors.map(err => err.message).join(', '))
+            || 'Oops! There was a problem sending your message. Please try again.';
+          if (formStatus) {
+            formStatus.className = 'form-status error';
+            formStatus.textContent = errorMsg;
+          }
+        }
+      } catch (err) {
+        if (formStatus) {
+          formStatus.className = 'form-status error';
+          formStatus.textContent = 'Network error. Please check your internet connection and try again.';
+        }
+      } finally {
+        if (submitBtn) {
+          submitBtn.disabled = false;
+          submitBtn.innerHTML = originalBtnText;
+        }
       }
     });
   }
@@ -92,16 +148,16 @@ document.addEventListener('DOMContentLoaded', function () {
   const marshmallowContainer = document.getElementById('marshmallow-container');
   if (marshmallowContainer) {
     for (let i = 0; i < 22; i++) {
-      const m    = document.createElement('div');
+      const m = document.createElement('div');
       const size = Math.random() * 28 + 16;
 
       m.classList.add('marshmallow-piece');
-      m.style.width            = `${size}px`;
-      m.style.height           = `${size * 0.85}px`;
-      m.style.left             = `${Math.random() * 100}vw`;
-      m.style.top              = `${Math.random() * 60}vh`;
-      m.style.animationDuration  = `${Math.random() * 10 + 8}s`;
-      m.style.animationDelay     = `${Math.random() * 6}s`;
+      m.style.width = `${size}px`;
+      m.style.height = `${size * 0.85}px`;
+      m.style.left = `${Math.random() * 100}vw`;
+      m.style.top = `${Math.random() * 60}vh`;
+      m.style.animationDuration = `${Math.random() * 10 + 8}s`;
+      m.style.animationDelay = `${Math.random() * 6}s`;
       m.style.animationTimingFunction = 'ease-in-out';
 
       marshmallowContainer.appendChild(m);
