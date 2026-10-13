@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import Clouds from "@/components/Clouds";
 import SocialLinks from "@/components/SocialLinks";
 import Workflow from "@/components/Workflow";
 import { interests, skills, socials } from "@/lib/data";
@@ -9,9 +10,7 @@ export default function Home() {
   return (
     <>
       <section id="home">
-        <div className="ghibli-cloud cloud-1" />
-        <div className="ghibli-cloud cloud-2" />
-        <div className="ghibli-cloud cloud-3" />
+        <Clouds />
         <div className="soot-sprite sprite-1" />
         <div className="soot-sprite sprite-2" />
 
