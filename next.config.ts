@@ -13,6 +13,8 @@ const oldPages: Record<string, string> = {
 };
 
 const nextConfig: NextConfig = {
+  // Lets phones on the home network use the dev server (hot reload included).
+  allowedDevOrigins: ["192.168.*.*"],
   async redirects() {
     return Object.entries(oldPages).map(([source, destination]) => ({
       source,

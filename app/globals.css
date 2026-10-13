@@ -664,13 +664,7 @@ header {
   width: fit-content;
   max-width: 100%;
   margin: 0 auto;
-  padding: 28px 36px 22px;
-  border-radius: 999px;
-  background: var(--frost-grain), rgba(255, 255, 255, 0.5);
-  border: 1px solid rgba(255, 255, 255, 0.8);
-  box-shadow: 0 10px 30px rgba(13, 93, 83, 0.07), inset 0 1px 0 #fff;
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+  padding: 8px 0 16px;
 }
 
 .wf-node {
@@ -1624,8 +1618,7 @@ footer {
     width: auto;
     max-width: 340px;
     margin: 0 auto;
-    padding: 22px 20px;
-    border-radius: 26px;
+    padding: 0;
   }
 
   .wf-node { flex-direction: row; gap: 16px; }
