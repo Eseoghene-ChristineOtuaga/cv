@@ -15,6 +15,14 @@ const oldPages: Record<string, string> = {
 const nextConfig: NextConfig = {
   // Lets phones on the home network use the dev server (hot reload included).
   allowedDevOrigins: ["192.168.*.*"],
+  images: {
+    // Project images uploaded from the admin dashboard live in Supabase Storage.
+    remotePatterns: [{ protocol: "https", hostname: "*.supabase.co", pathname: "/storage/v1/object/public/**" }],
+  },
+  experimental: {
+    // Room for image uploads from the admin dashboard (they're capped at 4 MB).
+    serverActions: { bodySizeLimit: "5mb" },
+  },
   async redirects() {
     return Object.entries(oldPages).map(([source, destination]) => ({
       source,

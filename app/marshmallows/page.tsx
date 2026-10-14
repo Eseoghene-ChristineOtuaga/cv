@@ -1,10 +1,12 @@
 import type { Metadata } from "next";
 import MarshmallowRain from "@/components/MarshmallowRain";
-import { hobbies } from "@/lib/data";
+import { getHobbies } from "@/lib/content";
 
 export const metadata: Metadata = { title: "Marshmallows" };
 
-export default function MarshmallowsPage() {
+export default async function MarshmallowsPage() {
+  const hobbies = await getHobbies();
+
   return (
     <section id="marshmallows" className="section">
       <MarshmallowRain />
@@ -16,8 +18,8 @@ export default function MarshmallowsPage() {
         </p>
 
         <div className="hobby-cards">
-          {hobbies.map(({ title, icon: Icon, text, tags, special }) => (
-            <article key={title} className={`hobby-card${special ? " marshmallow-card" : ""}`}>
+          {hobbies.map(({ title, icon: Icon, text, tags, special }, i) => (
+            <article key={`${title}-${i}`} className={`hobby-card${special ? " marshmallow-card" : ""}`}>
               <div className="hobby-header">
                 <span className="hobby-icon">
                   <Icon aria-hidden="true" />

@@ -13,6 +13,19 @@ npm run lint
 ```
 
 - Pages live in `app/` (one folder per route), shared pieces in `components/`.
-- All the content (projects, notes, hobbies, mentors, skills, links) is in `lib/data.ts`, so updating the site usually means editing that one file.
+- Projects, skills, interests, notes and marshmallows (hobbies) are edited from the admin dashboard at `/admin` and stored in Supabase. Everything else (mentors, links, chess) is in `lib/data.ts`, which is also the fallback content when Supabase isn't set up.
 - Styles are in `app/globals.css`. Images go in `public/`.
 - Old `.html` links (like `/projects.html`) redirect to the new routes, set in `next.config.ts`.
+
+## Admin dashboard (Supabase)
+
+One-time setup:
+
+1. Create a project at [supabase.com](https://supabase.com).
+2. In the SQL editor, run `supabase/schema.sql`. It creates the tables, the `media` image bucket, and copies in the current site content.
+3. Authentication → Users → **Add user** with Eseoghene's email and a password. Then in the SQL editor:
+   `insert into public.admins (email) values ('her@email.com');`
+4. Turn off public sign-ups (Authentication → Sign In / Providers → "Allow new users to sign up").
+5. Copy `.env.example` to `.env.local` and fill in the URL and publishable key from Project Settings → API. Add the same two variables in Vercel.
+
+Then sign in at `/admin`. Changes show up on the site right after saving.

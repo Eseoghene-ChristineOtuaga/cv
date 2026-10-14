@@ -3,10 +3,13 @@ import Link from "next/link";
 import Clouds from "@/components/Clouds";
 import SocialLinks from "@/components/SocialLinks";
 import Workflow from "@/components/Workflow";
-import { interests, skills, socials } from "@/lib/data";
+import { getInterests, getSkills } from "@/lib/content";
+import { socials } from "@/lib/data";
 import portrait from "@/public/ghibli.jpg";
 
-export default function Home() {
+export default async function Home() {
+  const [skills, interests] = await Promise.all([getSkills(), getInterests()]);
+
   return (
     <>
       <section id="home">
@@ -51,8 +54,8 @@ export default function Home() {
                 </div>
 
                 <ul className="interests">
-                  {interests.map(({ label, icon: Icon }) => (
-                    <li key={label} className="interest-item">
+                  {interests.map(({ label, icon: Icon }, i) => (
+                    <li key={`${label}-${i}`} className="interest-item">
                       <Icon aria-hidden="true" />
                       <span>{label}</span>
                     </li>
@@ -71,8 +74,8 @@ export default function Home() {
           <h2 className="section-title">My Skills</h2>
 
           <div className="skills-categories">
-            {skills.map(({ title, icon: Icon, text, pills }) => (
-              <div key={title} className="skill-card fade-in">
+            {skills.map(({ title, icon: Icon, text, pills }, i) => (
+              <div key={`${title}-${i}`} className="skill-card fade-in">
                 <div className="skill-icon">
                   <Icon aria-hidden="true" />
                 </div>
